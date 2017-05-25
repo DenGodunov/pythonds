@@ -1,5 +1,7 @@
 """
 Implement quadratic probing as a rehash technique.
+Everytime we find out that slot is not empty -
+increment it by n*2: 1, 4, 9, 16, 25...
 """
 
 class quadroProbing:
@@ -9,14 +11,15 @@ class quadroProbing:
 
     def put(self,key):
         slot = key%self.size
+        print '***',key,'***'
         if self.data[slot] == None:
             self.data[slot] = key
         else:
             i = 0
             while self.data[slot] != None:
                 i += 1
-                print i, i**2
                 slot = (slot+i**2)%11
+                print i**2,slot, self.data[slot]
             self.data[slot] = key
 
     def __str__(self):
