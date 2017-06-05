@@ -97,10 +97,19 @@ class UnorderedList:
             self.lastNode.setNext(temp)
             self.lastNode = temp
         self.size += 1
+     
+    def index(self,item):
+        current = self.head
+        found = False
+        count = 0
+        while not found:
+            if current.getData() == item:
+                found = True
+            else:
+                current = current.getNext()
+                count += 1
+        return count
         
-
-
-
 new_list = UnorderedList()
 new_list.add(5)
 new_list.add(43)
