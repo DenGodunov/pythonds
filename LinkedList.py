@@ -50,24 +50,31 @@ class UnorderedList:
                 current = current.getNext()
         return found
 
-    def remove(self,item):
+       def remove(self,item):
         current = self.head
         previous = None
         found = False
-        while not found:
+        while not found and current.getNext()!=None:
             if current.getData() == item:
                 found = True
             else:
                 previous = current
                 current = current.getNext()
 
-        if previous == None:
-            self.head = current.getNext()
-        
+        if found == False:
+            return 'Item not in the list'
+            
         else:
-            previous.setNext(current.getNext())
-
-        self.size -= 1
+            if previous == None:
+                if self.size == 1:
+                    self.lastNode = None
+                self.head = current.getNext()
+        
+            else:
+                if current.getNext()==None:
+                    self.lastNode = previous
+                previous.setNext(current.getNext())
+            self.size -= 1
 
     def __str__(self):
         result = "["
